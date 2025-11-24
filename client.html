@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Chat</title>
+</head>
+<body>
+    <h2>Chat Room</h2>
+    <textarea id="c" readonly></textarea><br>
+    <input type="text" id="m" placeholder="Type message..." />
+    <button onclick="send()">Send</button>
+    <a href="https://drive.google.com/drive/folders/1-jCC8Jckjha_qSP3gHGFotOhLp1qTO2l?usp=sharing" id="update" target="_blank">New Updates Here</a>
+
+    <script>
+        const c = document.getElementById("c");
+        const m = document.getElementById("m");
+        const ws = new WebSocket("ws://ip:port");
+
+        ws.onmessage = e => c.value += e.data + "\n";
+
+        addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                send();
+            }
+        });
+
+        function send() {
+            const txt = m.value;
+            ws.send(txt);
+            c.value += "<You>: " + txt + "\n";
+            m.value = "";
+        }
+    </script>
+    <link href="client.css" rel="stylesheet" type="text/css">
+    <p>Zek Chat -- Version 1.1</p>
+</body>
+</html>
