@@ -14,7 +14,7 @@
     <script>
         const c = document.getElementById("c");
         const m = document.getElementById("m");
-        const ws = new WebSocket("ws://zek-chat.onrender.com");
+        const ws = new WebSocket("ws://74.220.48.0:24");
 
         ws.onmessage = e => c.value += e.data + "\n";
 
@@ -36,4 +36,5 @@
 </body>
 
 </html>
+
 
